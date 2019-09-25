@@ -1,0 +1,26 @@
+# editors
+.vscode/
+
+# virtualenv
+.venv
+venv/
+ENV/
+
+__pycache__/
+*.pyc
+*.egg-info/
+*.egg
+.env
+# Unit test / coverage reports
+htmlcov/
+html_coverage_report/
+.tox/
+.coverage
+.coverage.*
+.coveragerc
+setup.cfg
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
