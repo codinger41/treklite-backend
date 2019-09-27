@@ -29,3 +29,10 @@ def login_required(fn):
         return fn(*args, **kwargs)
 
     return wrapper
+
+
+def return_logged_in_users_id():
+    auth_header = request.headers.get('Authorization')
+    auth_token = auth_header.split(" ")[1]
+    user_id = User.decode_token(auth_token).get('id')
+    return user_id

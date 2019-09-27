@@ -27,11 +27,8 @@ sys.path.append(os.getcwd())
 config.set_main_option('sqlalchemy.url', database_url)
 
 from helpers.database import Base
-# from api.user.models import User
-# from api.challenge.models import Challenge
-# from api.challenge_entries.model import ChallengeEntry
-# from api.contestant.model import Contestant
-
+from api.user.models import User
+from api.trip.models import Trip
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel

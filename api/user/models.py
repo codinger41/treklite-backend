@@ -30,7 +30,7 @@ class User(Base, Utility):
 
         return token.decode('utf-8')
 
-    def decode_token(self, token):
+    def decode_token(token):
         payload = jwt.decode(
             token,
             secret,
