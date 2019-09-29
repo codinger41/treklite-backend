@@ -38,6 +38,29 @@ class CreateTrip(graphene.Mutation):
         return CreateTrip(trip=new_trip)
 
 
+class EndTrip(graphene.Mutation):
+    """
+        Mutation to end a trip
+    """
+
+    class Arguments:
+        trip_id = graphene.Int(required=True)
+
+    trip = graphene.Field(Trip)
+
+    @login_required
+    def mutate(self, info, **kwargs):
+        query = Trip.get_query(info)
+        trip = query.filter(TripModel.id == kwargs['trip_id']).first()
+        
+        if not trip:
+            return GraphQLError("Trip not found!")
+
+        trip.status = "ended"
+        trip.save()
+        return EndTrip(trip=trip)
+
+
 class allTrips(graphene.ObjectType):
     """
         Get all trips
@@ -108,3 +131,6 @@ class Mutation(graphene.ObjectType):
             \n- destination_latitude[required]\
             \n- host = trip creator[required]\
             \n- status = status of the trip[required]")
+    end_trip = EndTrip.Field(
+        description="Ends a trip with the trip_id"
+    )
